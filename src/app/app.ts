@@ -12,7 +12,7 @@ export class App {
 
   public x1 = 0
   public y1 = 0
-  
+
   public alvos: Alvo[] = []
   public alvo = new Alvo()
 
@@ -24,18 +24,24 @@ export class App {
   }
 
   obterAngulo(alvo: Alvo) {
-  const deltaX = alvo.x - this.x1;
-  const deltaY = alvo.y - this.y1;
-  const anguloRad = Math.atan2(deltaX, deltaY);
-  let anguloGraus = anguloRad * (180 / Math.PI);
-  if (anguloGraus < 0) {
-    anguloGraus += 360;
+    const deltaX = alvo.x - this.x1;
+    const deltaY = alvo.y - this.y1;
+    const anguloRad = Math.atan2(deltaX, deltaY);
+    let anguloGraus = anguloRad * (180 / Math.PI);
+    if (anguloGraus < 0) {
+      anguloGraus += 360;
+    }
+    return anguloGraus.toFixed(0);
   }
-  return anguloGraus.toFixed(0);
-}
+
+  isNovo(id: string) {
+    return this.alvos.every(alvo => alvo.id != id)
+  }
 
   salvar() {
-    this.alvos.push(this.alvo)
+    if (this.isNovo(this.alvo.id)) {
+      this.alvos.unshift(this.alvo)
+    }
     this.alvo = new Alvo()
   }
 
@@ -54,7 +60,7 @@ export class App {
 }
 
 export class Alvo {
-  id = `${crypto.randomUUID().substring(0,8)}`
+  id = `${crypto.randomUUID().substring(0, 8)}`
   nome = `alvo-${this.id}`
   x = 0
   y = 0

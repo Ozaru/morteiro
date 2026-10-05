@@ -30,10 +30,10 @@
                 </div>
             </div>
             <div class="col-sm-12 col-md-6">
-                <div class="card">
+                <div class="card" [class]="!isNovo(alvo.id) ? 'border-2 border-primary' : ''">
                     <div class="card-body">
                         <div class="text-center">
-                            <span class="card-title fw-bold">Destino (x, y)</span>
+                            <span class="card-title fw-bold cursor-pointer text-primary text-decoration-underline" (click)="renomear(alvo)">{{alvo.nome}}</span>
                         </div>
                         <hr>
                         <div class="row g-2">
@@ -48,27 +48,28 @@
                         </div>
                     </div>
                     <div class="card-footer d-flex gap-2">
-                        <button class="btn btn-primary ms-auto" (click)="salvar()">Inserir</button>
+                        <button class="btn btn-primary ms-auto" (click)="salvar()">Salvar</button>
                     </div>
                 </div>
             </div>
         </div>
         <hr>
         <div class="row g-2">
-            @for (alvo of alvos; track $index) {
+            @for (_alvo of alvos; track $index) {
             <div class="col-sm-12 col-md-6 col-lg-3">
-                <div class="card shadow">
+                <div class="card" [class]="_alvo.id == alvo.id ? 'border-2 border-primary' : ''">
                     <div class="card-body">
                         <div class="text-center">
-                            <button class="btn btn-link fw-bold" (click)="renomear(alvo)">{{alvo.nome}}</button>
+                            <span class="card-title fw-bold">{{_alvo.nome}}</span>
+                            <hr>
+                            <span>{{obterDistancia(_alvo)}}m - {{obterAngulo(_alvo)}}°</span>
                             <br>
-                            <span>{{obterDistancia(alvo)}}m - {{obterAngulo(alvo)}}°</span>
-                            <br>
-                            <span>({{(alvo.x / 100).toFixed(2)}}, {{(alvo.y / 100).toFixed(2)}})</span>
+                            <span>({{(_alvo.x / 100).toFixed(2)}}, {{(_alvo.y / 100).toFixed(2)}})</span>
                         </div>
                     </div>
                     <div class="card-footer d-flex gap-2">
-                        <button class="btn btn-danger ms-auto" (click)="remover(alvo.id)">Excluir</button>
+                        <button class="btn btn-primary ms-auto" (click)="editar(_alvo)" [disabled]="_alvo.id == alvo.id">Editar</button>
+                        <button class="btn btn-danger" (click)="remover(_alvo.id)" [disabled]="_alvo.id == alvo.id">Excluir</button>
                     </div>
                 </div>
             </div>
