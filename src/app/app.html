@@ -1,0 +1,50 @@
+<div class="container">
+    <div class="d-flex flex-column gap-2">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex flex-column align-items-center">
+                    <h4>Distância</h4>
+                    <span class="h2">{{distancia}}m</span>
+                </div>
+            </div>
+        </div>
+        <div class="row g-2">
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-body">
+                        <span class="card-title fw-bold text-primary">Origem</span>
+                        <hr>
+                        <div class="row g-2">
+                            <div class="col-6 form-group">
+                                <label class="form-label" for="x1">X1</label>
+                                <input class="form-control" id="x1" [(ngModel)]="x1" appMascaraDecimal inputmode="numeric">
+                            </div>
+                            <div class="col-6 form-group">
+                                <label class="form-label" for="y1">Y1</label>
+                                <input class="form-control" id="y1" [(ngModel)]="y1" appMascaraDecimal inputmode="numeric">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-body">
+                        <span class="card-title fw-bold text-primary">Destino</span>
+                        <hr>
+                        <div class="row g-2">
+                            <div class="col-6 form-group">
+                                <label class="form-label" for="x2">X2</label>
+                                <input class="form-control" id="x2" [(ngModel)]="x2" appMascaraDecimal inputmode="numeric">
+                            </div>
+                            <div class="col-6 form-group">
+                                <label class="form-label" for="y2">Y2</label>
+                                <input class="form-control" id="y2" [(ngModel)]="y2" appMascaraDecimal inputmode="numeric">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
