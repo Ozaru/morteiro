@@ -84,6 +84,21 @@ export class MascaraDecimalDirective implements ControlValueAccessor {
         this.posicionarCursor();
     }
 
+    @HostListener('focus')
+    onFocus(): void {
+        this.posicionarCursor();
+    }
+
+    @HostListener('click')
+    onClick(): void {
+        this.posicionarCursor();
+    }
+
+    @HostListener('keyup')
+    onKeyUp(): void {
+        this.posicionarCursor();
+    }
+
     @HostListener('blur')
     onBlur(): void {
         this.atualizarInput();
@@ -132,7 +147,7 @@ export class MascaraDecimalDirective implements ControlValueAccessor {
     private formatar(valor: number): string {
         return (valor / 100)
             .toFixed(2)
-            .replace('.', ',');
+            // .replace('.', ',');
     }
 
     private posicionarCursor(): void {

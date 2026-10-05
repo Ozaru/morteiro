@@ -1,50 +1,86 @@
 <div class="container">
     <div class="d-flex flex-column gap-2">
+        <div class="row mt-5 bg-dark">
+            <div class="col d-flex justify-content-center text-white">
+                <h1>Calculadora de artilharia</h1>
+            </div>
+        </div>
         <div class="card">
             <div class="card-body">
                 <div class="d-flex flex-column align-items-center">
-                    <h4>Distância</h4>
-                    <span class="h2">{{distancia}}m</span>
+                    <span class="h2">{{distancia}}m - {{angulo}}°</span>
                 </div>
             </div>
         </div>
         <div class="row g-2">
-            <div class="col-6">
+            <div class="col-sm-12 col-md-6">
                 <div class="card">
                     <div class="card-body">
-                        <span class="card-title fw-bold text-primary">Origem</span>
+                        <div class="text-center">
+                            <span class="card-title fw-bold">Origem (x, y)</span>
+                        </div>
                         <hr>
                         <div class="row g-2">
-                            <div class="col-6 form-group">
-                                <label class="form-label" for="x1">X1</label>
-                                <input class="form-control" id="x1" [(ngModel)]="x1" appMascaraDecimal inputmode="numeric">
+                            <div class="col form-group">
+                                <input class="form-control" id="x1" [(ngModel)]="x1" appMascaraDecimal
+                                    inputmode="numeric">
                             </div>
-                            <div class="col-6 form-group">
-                                <label class="form-label" for="y1">Y1</label>
-                                <input class="form-control" id="y1" [(ngModel)]="y1" appMascaraDecimal inputmode="numeric">
+                            <div class="col form-group">
+                                <input class="form-control" id="y1" [(ngModel)]="y1" appMascaraDecimal
+                                    inputmode="numeric">
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-6">
-                <div class="card">
-                    <div class="card-body">
-                        <span class="card-title fw-bold text-primary">Destino</span>
-                        <hr>
-                        <div class="row g-2">
-                            <div class="col-6 form-group">
-                                <label class="form-label" for="x2">X2</label>
-                                <input class="form-control" id="x2" [(ngModel)]="x2" appMascaraDecimal inputmode="numeric">
-                            </div>
-                            <div class="col-6 form-group">
-                                <label class="form-label" for="y2">Y2</label>
-                                <input class="form-control" id="y2" [(ngModel)]="y2" appMascaraDecimal inputmode="numeric">
-                            </div>
-                        </div>
+                    <div class="card-footer d-flex gap-2">
+                        <button class="btn btn-warning ms-auto" (click)="x1=0;y1=0">Limpar</button>
                     </div>
                 </div>
             </div>
+            <div class="col-sm-12 col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="text-center">
+                            <span class="card-title fw-bold">Destino (x, y)</span>
+                        </div>
+                        <hr>
+                        <div class="row g-2">
+                            <div class="col form-group">
+                                <input class="form-control" id="x2" [(ngModel)]="x2" appMascaraDecimal
+                                    inputmode="numeric">
+                            </div>
+                            <div class="col form-group">
+                                <input class="form-control" id="y2" [(ngModel)]="y2" appMascaraDecimal
+                                    inputmode="numeric">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer d-flex gap-2">
+                        <button class="btn btn-warning ms-auto" (click)="x2=0;y2=0">Limpar</button>
+                        <button class="btn btn-primary" (click)="adicionar()">Salvar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row g-2">
+            @for (alvo of alvos; track $index) {
+            <div class="col-sm-12 col-md-6 col-lg-3">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <div class="text-center">
+                            <button class="btn btn-link fw-bold" (click)="renomear(alvo)">{{alvo.nome}}</button>
+                            <br>
+                            <span>{{obterDistancia(alvo.x2, alvo.y2)}}m - {{obterAngulo(alvo.x2, alvo.y2)}}°</span>
+                            <br>
+                            <span>({{(alvo.x2 / 100).toFixed(2)}}, {{(alvo.y2 / 100).toFixed(2)}})</span>
+                        </div>
+                    </div>
+                    <div class="card-footer d-flex gap-2">
+                        <button class="btn btn-danger ms-auto" (click)="remover(alvo.id)">Excluir</button>
+                    </div>
+                </div>
+            </div>
+            }
         </div>
     </div>
 </div>
