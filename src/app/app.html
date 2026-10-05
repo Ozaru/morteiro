@@ -2,7 +2,7 @@
     <div class="d-flex flex-column gap-2">
         <div class="row bg-dark py-3">
             <div class="col d-flex justify-content-center text-white">
-                <h1>Calculadora de artilharia</h1>
+                <h1>Wardogs Artilharia</h1>
             </div>
         </div>
         <div class="row g-2">
@@ -38,17 +38,17 @@
                         <hr>
                         <div class="row g-2">
                             <div class="col form-group">
-                                <input class="form-control" id="x2" [(ngModel)]="x2" appMascaraDecimal
+                                <input class="form-control" id="x2" [(ngModel)]="alvo.x" appMascaraDecimal
                                     inputmode="numeric">
                             </div>
                             <div class="col form-group">
-                                <input class="form-control" id="y2" [(ngModel)]="y2" appMascaraDecimal
+                                <input class="form-control" id="y2" [(ngModel)]="alvo.y" appMascaraDecimal
                                     inputmode="numeric">
                             </div>
                         </div>
                     </div>
                     <div class="card-footer d-flex gap-2">
-                        <button class="btn btn-primary ms-auto" (click)="adicionar()">Adicionar</button>
+                        <button class="btn btn-primary ms-auto" (click)="salvar()">Inserir</button>
                     </div>
                 </div>
             </div>
@@ -62,9 +62,9 @@
                         <div class="text-center">
                             <button class="btn btn-link fw-bold" (click)="renomear(alvo)">{{alvo.nome}}</button>
                             <br>
-                            <span>{{obterDistancia(alvo.x2, alvo.y2)}}m - {{obterAngulo(alvo.x2, alvo.y2)}}°</span>
+                            <span>{{obterDistancia(alvo)}}m - {{obterAngulo(alvo)}}°</span>
                             <br>
-                            <span>({{(alvo.x2 / 100).toFixed(2)}}, {{(alvo.y2 / 100).toFixed(2)}})</span>
+                            <span>({{(alvo.x / 100).toFixed(2)}}, {{(alvo.y / 100).toFixed(2)}})</span>
                         </div>
                     </div>
                     <div class="card-footer d-flex gap-2">

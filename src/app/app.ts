@@ -12,45 +12,35 @@ export class App {
 
   public x1 = 0
   public y1 = 0
-  public x2 = 0
-  public y2 = 0
-
+  
   public alvos: Alvo[] = []
+  public alvo = new Alvo()
 
-  get distancia() {
-    return this.obterDistancia(this.x2, this.y2)
-  }
-
-  get angulo() {
-    return this.obterAngulo(this.x2, this.y2)
-  }
-
-  obterDistancia(x: number, y: number) {
-    const dx = Math.abs(x - this.x1)
-    const dy = Math.abs(y - this.y1)
+  obterDistancia(alvo: Alvo) {
+    const dx = Math.abs(alvo.x - this.x1)
+    const dy = Math.abs(alvo.y - this.y1)
     const result = Math.sqrt(dx ** 2 + dy ** 2)
     return result.toFixed(0)
   }
 
-  obterAngulo(x: number, y: number) {
-  const deltaX = x - this.x1;
-  const deltaY = y - this.y1;
+  obterAngulo(alvo: Alvo) {
+  const deltaX = alvo.x - this.x1;
+  const deltaY = alvo.y - this.y1;
   const anguloRad = Math.atan2(deltaX, deltaY);
   let anguloGraus = anguloRad * (180 / Math.PI);
   if (anguloGraus < 0) {
     anguloGraus += 360;
   }
-  return anguloGraus;
+  return anguloGraus.toFixed(0);
 }
 
-  adicionar() {
-    const alvo = new Alvo()
-    alvo.nome = `alvo-${alvo.id}`
-    alvo.x2 = this.x2
-    alvo.y2 = this.y2
-    this.alvos.push(alvo)
-    this.x2 = 0
-    this.y2 = 0
+  salvar() {
+    this.alvos.push(this.alvo)
+    this.alvo = new Alvo()
+  }
+
+  editar(alvo: Alvo) {
+    this.alvo = alvo
   }
 
   remover(id: string) {
@@ -65,7 +55,7 @@ export class App {
 
 export class Alvo {
   id = `${crypto.randomUUID().substring(0,8)}`
-  nome!: string
-  x2!: number
-  y2!: number
+  nome = `alvo-${this.id}`
+  x = 0
+  y = 0
 }
