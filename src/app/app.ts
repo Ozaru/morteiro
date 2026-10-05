@@ -23,6 +23,11 @@ export class App {
     return result.toFixed(0)
   }
 
+  hasRange(alvo: Alvo) {
+    const distancia = parseInt(this.obterDistancia(alvo))
+    return distancia > 135 && distancia < 680
+  }
+
   obterAngulo(alvo: Alvo) {
     const deltaX = alvo.x - this.x1;
     const deltaY = alvo.y - this.y1;
